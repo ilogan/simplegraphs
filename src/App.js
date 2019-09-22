@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import EpisodeList from "./components/EpisodeList";
 
@@ -6,8 +6,15 @@ import podcastService from "./services/podcast";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [podcastId, setPodcastId] = useState([]);
+  const [podcastId, setPodcastId] = useState("");
   const [episodeList, setEpisodeList] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.podcastId && localStorage.episodeList) {
+      setPodcastId(localStorage.podcastId);
+      setEpisodeList(JSON.parse(localStorage.episodeList));
+    }
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -18,10 +25,11 @@ function App() {
         return console.log("couldn't find podcast");
       }
       setPodcastId(podcast.id);
-      const episodes = await podcastService.getPodcastEpisodes(podcast.id);
+      localStorage.setItem("podcastId", podcast.id);
 
+      const episodes = await podcastService.getPodcastEpisodes(podcast.id);
       setEpisodeList(episodes.collection);
-      console.log(episodes.collection);
+      localStorage.setItem("episodeList", JSON.stringify(episodes.collection));
     } catch (e) {
       console.log("an error occurred", e.message);
     }
