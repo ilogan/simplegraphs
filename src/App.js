@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import EpisodeList from "./components/EpisodeList";
+
 import podcastService from "./services/podcast";
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
         />
         <button>Submit</button>
       </form>
+      <EpisodeList episodeList={episodeList} />
     </div>
   );
 }
