@@ -8,7 +8,7 @@ function Episode({ episode, id }) {
   useEffect(() => {
     const getDownloads = async id => {
       const episodeDownloads = await podcastService.getEpisodeDownloads(id);
-      setDownloads(episodeDownloads.total);
+      setDownloads(episodeDownloads);
     };
     getDownloads(id);
   }, [id]);
@@ -16,7 +16,7 @@ function Episode({ episode, id }) {
   return (
     <div>
       <h2>{episode.title}</h2>
-      <div>{downloads} downloads</div>
+      <div>{downloads.total} downloads</div>
     </div>
   );
 }
