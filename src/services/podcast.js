@@ -10,4 +10,9 @@ const getPodcastEpisodes = async id => {
   return res.data;
 };
 
-export default { getPodcast, getPodcastEpisodes };
+const getEpisodeDownloads = async id => {
+  const res = await simplecast.get(`/analytics/downloads?episode=${id}`);
+  return res.data;
+};
+
+export default { getPodcast, getPodcastEpisodes, getEpisodeDownloads };
