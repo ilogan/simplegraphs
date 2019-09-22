@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 
-import simplecast from "./api/simplecast";
+import podcastService from "./services/podcast";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [podcastId, setPodcastId] = useState([]);
+  const [episodeList, setEpisodeList] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await simplecast.get("/podcasts");
-      console.log(res.data.collection);
-      const podcast = res.data.collection.find(p => p.title === inputValue);
+      const podcasts = await podcastService.getPodcast();
+      const podcast = podcasts.collection.find(p => p.title === inputValue);
       if (!podcast) {
         return console.log("couldn't find podcast");
       }
       setPodcastId(podcast.id);
+      const episodes = await podcastService.getPodcastEpisodes(podcast.id);
+
+      setEpisodeList(episodes.collection);
+      console.log(episodes.collection);
     } catch (e) {
       console.log("an error occurred", e.message);
     }
@@ -32,7 +36,6 @@ function App() {
         />
         <button>Submit</button>
       </form>
-      <div>{podcastId}</div>
     </div>
   );
 }
