@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import podcastService from "../services/podcast";
 
-function Episode({ episode }) {
+function Episode({ episode, id }) {
   const [downloads, setDownloads] = useState("");
 
   useEffect(() => {
@@ -10,8 +10,8 @@ function Episode({ episode }) {
       const episodeDownloads = await podcastService.getEpisodeDownloads(id);
       setDownloads(episodeDownloads.total);
     };
-    getDownloads(episode.id);
-  }, []);
+    getDownloads(id);
+  }, [id]);
 
   return (
     <div>
