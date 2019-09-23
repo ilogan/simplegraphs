@@ -2,7 +2,7 @@ import React from "react";
 
 import Episode from "./Episode";
 
-function EpisodeList({ episodeList }) {
+function EpisodeTable({ episodeList }) {
   const renderEpisodes = episodeList.map(episode => (
     <Episode key={episode.id} episode={episode} id={episode.id} />
   ));
@@ -24,4 +24,4 @@ function EpisodeList({ episodeList }) {
   );
 }
 
-export default EpisodeList;
+export default EpisodeTable;

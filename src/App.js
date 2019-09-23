@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import EpisodeList from "./components/EpisodeList";
+import EpisodeTable from "./components/EpisodeTable";
 
 import podcastService from "./services/podcast";
 
@@ -46,7 +46,7 @@ function App() {
         />
         <button>Submit</button>
       </form>
-      <EpisodeList episodeList={episodeList} />
+      <EpisodeTable episodeList={episodeList} />
     </div>
   );
 }
