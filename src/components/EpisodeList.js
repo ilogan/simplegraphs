@@ -7,7 +7,18 @@ function EpisodeList({ episodeList }) {
     <Episode key={episode.id} episode={episode} id={episode.id} />
   ));
 
-  return <div>{renderEpisodes}</div>;
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Episode #</th>
+          <th>Publish date</th>
+        </tr>
+      </thead>
+      <tbody>{renderEpisodes}</tbody>
+    </table>
+  );
 }
 
 export default EpisodeList;
