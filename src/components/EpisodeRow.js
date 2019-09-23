@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import podcastService from "../services/podcast";
+import useToggleState from "../hooks/useToggleState";
+//import podcastService from "../services/podcast";
 
 function Episode({ episode, id }) {
   // //* an object containing data about an episodes downloads
@@ -32,6 +33,7 @@ function Episode({ episode, id }) {
   //     ));
   //   }
   // };
+  const [isAdd, toggleIsAdd] = useToggleState(false);
 
   const publishDate = new Date(episode.published_at);
   return (
@@ -40,9 +42,9 @@ function Episode({ episode, id }) {
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
       <td>
-        <button>Add</button>
+        <button onClick={toggleIsAdd}>{isAdd ? "Remove" : "Add"}</button>
       </td>
-      <td>X or O</td>
+      <td>{isAdd ? "O" : "X"}</td>
     </tr>
   );
 }
