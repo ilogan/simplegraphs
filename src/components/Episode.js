@@ -39,6 +39,10 @@ function Episode({ episode, id }) {
       <td>{episode.title}</td>
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
+      <td>
+        <button>Add</button>
+      </td>
+      <td>X or O</td>
     </tr>
   );
 }

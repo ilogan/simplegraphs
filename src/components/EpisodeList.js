@@ -14,6 +14,9 @@ function EpisodeList({ episodeList }) {
           <th>Title</th>
           <th>Episode #</th>
           <th>Publish date</th>
+          <th>
+            <button>Add all</button>
+          </th>
         </tr>
       </thead>
       <tbody>{renderEpisodes}</tbody>
