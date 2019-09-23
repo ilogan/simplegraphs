@@ -1,6 +1,6 @@
 import React from "react";
 
-import Episode from "./Episode";
+import Episode from "./EpisodeRow";
 
 function EpisodeTable({ episodeList }) {
   const renderEpisodes = episodeList.map(episode => (
