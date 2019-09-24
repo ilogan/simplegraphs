@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import EpisodeForm from "./components/EpisodeForm";
 
 import podcastService from "./services/podcast";
-
+import { customizeEpisodes } from "./services/customizeEpisodes";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [podcastId, setPodcastId] = useState("");
+  // episode info taken from api
   const [episodeList, setEpisodeList] = useState([]);
 
   useEffect(() => {
@@ -28,8 +29,9 @@ function App() {
       localStorage.setItem("podcastId", podcast.id);
 
       const episodes = await podcastService.getPodcastEpisodes(podcast.id);
-      setEpisodeList(episodes.collection);
-      localStorage.setItem("episodeList", JSON.stringify(episodes.collection));
+      const customizedEpisodes = customizeEpisodes(episodes.collection);
+      setEpisodeList(customizedEpisodes);
+      localStorage.setItem("episodeList", JSON.stringify(customizedEpisodes));
     } catch (e) {
       console.log("an error occurred", e.message);
     }
