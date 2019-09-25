@@ -31,7 +31,7 @@ function EpisodeRow({ episode, id, updateEpisode }) {
   //   }
   // };
   const toggleShow = () => {
-    updateEpisode(id, "show", !episode.show);
+    updateEpisode(id, "showOnGraph", !episode.showOnGraph);
   };
 
   const publishDate = new Date(episode.published_at);
