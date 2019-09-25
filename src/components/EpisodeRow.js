@@ -1,6 +1,6 @@
 import React from "react";
 
-function EpisodeRow({ episode, id, updateEpisode }) {
+function EpisodeRow({ episode, id, updateEpisode, renderShowAllText }) {
   // //* an object containing data about an episodes downloads
   // //  keys: href, total, interval, id, by_interval
   // const [downloads, setDownloads] = useState("");
@@ -30,7 +30,7 @@ function EpisodeRow({ episode, id, updateEpisode }) {
   //     ));
   //   }
   // };
-  const toggleShow = () => {
+  const toggleGraphShow = () => {
     updateEpisode(id, "showOnGraph", !episode.showOnGraph);
   };
 
@@ -41,7 +41,7 @@ function EpisodeRow({ episode, id, updateEpisode }) {
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
       <td>
-        <button onClick={toggleShow}>
+        <button onClick={toggleGraphShow}>
           {episode.showOnGraph ? "Remove" : "Add"}
         </button>
       </td>
