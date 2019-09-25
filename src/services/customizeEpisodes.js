@@ -22,7 +22,6 @@ export const addKeyToObjectList = (objectList, newKey, defaultValue) => {
       ...obj,
       [newKey]: defaultValue
     }));
-    console.log("custom", newObject);
     return newObject;
   } catch (e) {
     console.error("There was an issue", e.message);

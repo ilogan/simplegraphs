@@ -12,6 +12,7 @@ function EpisodeForm({ episodeList, updateEpisode, setEpisodeDownloadList }) {
           if (ep.showOnGraph) {
             return podcastService.getEpisodeDownloads(ep.id);
           }
+          return null;
         })
         .filter(ep => ep)
     );
