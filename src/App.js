@@ -37,6 +37,17 @@ function App() {
     }
   };
 
+  const updateEpisode = (id, key, updatedValue) => {
+    const updatedEpisodeList = episodeList.map(ep => {
+      if (ep.id === id) {
+        ep[key] = updatedValue;
+        return ep;
+      }
+      return ep;
+    });
+    setEpisodeList(updatedEpisodeList);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -48,7 +59,7 @@ function App() {
         />
         <button>Submit</button>
       </form>
-      <EpisodeForm episodeList={episodeList} />
+      <EpisodeForm episodeList={episodeList} updateEpisode={updateEpisode} />
     </div>
   );
 }

@@ -1,10 +1,15 @@
 import React from "react";
 
-import Episode from "./EpisodeRow";
+import EpisodeRow from "./EpisodeRow";
 
-function EpisodeTable({ episodeList }) {
+function EpisodeTable({ episodeList, updateEpisode }) {
   const renderEpisodes = episodeList.map(episode => (
-    <Episode key={episode.id} episode={episode} id={episode.id} />
+    <EpisodeRow
+      key={episode.id}
+      episode={episode}
+      id={episode.id}
+      updateEpisode={updateEpisode}
+    />
   ));
 
   return (

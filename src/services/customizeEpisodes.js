@@ -33,5 +33,5 @@ export const addKeyToObjectList = (objectList, newKey, defaultValue) => {
 export const customizeEpisodes = episodeList => {
   // const keys = ["graph"];
   // const vals = [{ show: false }];
-  return addKeyToObjectList(episodeList, "graph", { show: false });
+  return addKeyToObjectList(episodeList, "show", true);
 };

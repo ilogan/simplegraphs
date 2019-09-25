@@ -1,9 +1,6 @@
 import React from "react";
 
-import useToggleState from "../hooks/useToggleState";
-//import podcastService from "../services/podcast";
-
-function Episode({ episode, id }) {
+function EpisodeRow({ episode, id, updateEpisode }) {
   // //* an object containing data about an episodes downloads
   // //  keys: href, total, interval, id, by_interval
   // const [downloads, setDownloads] = useState("");
@@ -33,7 +30,9 @@ function Episode({ episode, id }) {
   //     ));
   //   }
   // };
-  const [isAdd, toggleIsAdd] = useToggleState(false);
+  const toggleShow = () => {
+    updateEpisode(id, "show", !episode.show);
+  };
 
   const publishDate = new Date(episode.published_at);
   return (
@@ -42,11 +41,11 @@ function Episode({ episode, id }) {
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
       <td>
-        <button onClick={toggleIsAdd}>{isAdd ? "Remove" : "Add"}</button>
+        <button onClick={toggleShow}>{episode.show ? "Remove" : "Add"}</button>
       </td>
-      <td>{isAdd ? "O" : "X"}</td>
+      <td>{episode.show ? "O" : "X"}</td>
     </tr>
   );
 }
 
-export default Episode;
+export default EpisodeRow;
