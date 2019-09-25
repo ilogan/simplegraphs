@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 import EpisodeForm from "./components/EpisodeForm";
+import Graph from "./components/Graph";
 
 import podcastService from "./services/podcast";
 import { customizeEpisodes } from "./services/customizeEpisodes";
+
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [podcastId, setPodcastId] = useState("");
@@ -68,6 +70,7 @@ function App() {
           setEpisodeDownloadList={setEpisodeDownloadList}
         />
       ) : null}
+      {episodeDownloadList.length > 0 ? <Graph /> : null}
     </div>
   );
 }
