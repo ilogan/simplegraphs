@@ -41,9 +41,11 @@ function EpisodeRow({ episode, id, updateEpisode }) {
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
       <td>
-        <button onClick={toggleShow}>{episode.show ? "Remove" : "Add"}</button>
+        <button onClick={toggleShow}>
+          {episode.showOnGraph ? "Remove" : "Add"}
+        </button>
       </td>
-      <td>{episode.show ? "O" : "X"}</td>
+      <td>{episode.showOnGraph ? "O" : "X"}</td>
     </tr>
   );
 }
