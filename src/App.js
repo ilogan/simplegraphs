@@ -70,7 +70,9 @@ function App() {
           setEpisodeDownloadList={setEpisodeDownloadList}
         />
       ) : null}
-      {episodeDownloadList.length > 0 ? <Graph /> : null}
+      {episodeDownloadList.length > 0 ? (
+        <Graph episodeDownloadList={episodeDownloadList} />
+      ) : null}
     </div>
   );
 }

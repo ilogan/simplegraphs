@@ -1,9 +1,15 @@
 import React from "react";
+import createGraphOptions from "../services/graph";
 
-function Graph() {
+import { CanvasJSChart } from "../assets/canvasjs.react";
+
+function Graph({ episodeDownloadList }) {
+  const options = createGraphOptions(episodeDownloadList);
+  console.log(options);
+
   return (
     <div>
-      <h1>Graph</h1>
+      <CanvasJSChart options={options} />
     </div>
   );
 }
