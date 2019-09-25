@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import EpisodeForm from "./components/EpisodeForm";
 
@@ -10,12 +10,12 @@ function App() {
   // episode info taken from api
   const [episodeList, setEpisodeList] = useState([]);
 
-  useEffect(() => {
-    if (localStorage.podcastId && localStorage.episodeList) {
-      setPodcastId(localStorage.podcastId);
-      setEpisodeList(JSON.parse(localStorage.episodeList));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.podcastId && localStorage.episodeList) {
+  //     setPodcastId(localStorage.podcastId);
+  //     setEpisodeList(JSON.parse(localStorage.episodeList));
+  //   }
+  // }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -26,12 +26,12 @@ function App() {
         return console.log("couldn't find podcast");
       }
       setPodcastId(podcast.id);
-      localStorage.setItem("podcastId", podcast.id);
+      //localStorage.setItem("podcastId", podcast.id);
 
       const episodes = await podcastService.getPodcastEpisodes(podcast.id);
       const customizedEpisodes = customizeEpisodes(episodes.collection);
       setEpisodeList(customizedEpisodes);
-      localStorage.setItem("episodeList", JSON.stringify(customizedEpisodes));
+      //localStorage.setItem("episodeList", JSON.stringify(customizedEpisodes));
     } catch (e) {
       console.log("an error occurred", e.message);
     }
@@ -59,7 +59,9 @@ function App() {
         />
         <button>Submit</button>
       </form>
-      <EpisodeForm episodeList={episodeList} updateEpisode={updateEpisode} />
+      {podcastId ? (
+        <EpisodeForm episodeList={episodeList} updateEpisode={updateEpisode} />
+      ) : null}
     </div>
   );
 }
