@@ -9,6 +9,8 @@ function App() {
   const [podcastId, setPodcastId] = useState("");
   // episode info taken from api
   const [episodeList, setEpisodeList] = useState([]);
+  // download info taken from api
+  const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
 
   // useEffect(() => {
   //   if (localStorage.podcastId && localStorage.episodeList) {
@@ -60,7 +62,11 @@ function App() {
         <button>Submit</button>
       </form>
       {podcastId ? (
-        <EpisodeForm episodeList={episodeList} updateEpisode={updateEpisode} />
+        <EpisodeForm
+          episodeList={episodeList}
+          updateEpisode={updateEpisode}
+          setEpisodeDownloadList={setEpisodeDownloadList}
+        />
       ) : null}
     </div>
   );
