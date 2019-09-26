@@ -3,8 +3,9 @@ import createGraphOptions from "../services/graph";
 
 import { CanvasJSChart } from "../assets/canvasjs.react";
 
-function Graph({ episodeDownloadList }) {
-  const options = createGraphOptions(episodeDownloadList);
+function Graph({ episodeDownloadList, episodeList }) {
+  console.log(episodeList);
+  const options = createGraphOptions(episodeDownloadList, episodeList, true);
   console.log(options);
 
   return (
