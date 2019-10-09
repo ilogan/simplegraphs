@@ -1,13 +1,13 @@
 import React from "react";
 
 import Navbar from "./containers/Navbar";
-import Dashboard from "./containers/Dashboard";
+import Routes from "./Routes";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Dashboard />
+      <Routes />
     </div>
   );
 }
