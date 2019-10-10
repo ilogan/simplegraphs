@@ -7,6 +7,7 @@ import Login from "./containers/Login";
 import NotFound from "./components/NotFound";
 
 export default props => {
+  console.log(props);
   return (
     <Switch>
       <AppliedRoute path="/" props={props} exact component={Landing} />

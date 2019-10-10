@@ -1,8 +1,39 @@
 import React, { useState } from "react";
+import { Auth } from "aws-amplify";
 
-function Login({ history }) {
+function Login({ history, cProps }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const SignIn = async () => {
+    try {
+      // sign in and set the user
+      const user = await Auth.signIn(username, password);
+      cProps.onStateChange("signedIn", user);
+    } catch (e) {
+      if (e.code === "UserNotConfirmedException") {
+        throw e;
+        // The error happens if the user didn't finish the confirmation step when signing up
+        // In this case you need to resend the code and confirm the user
+        // About how to resend the code and confirm the user, please check the signUp part
+      } else if (e.code === "PasswordResetRequiredException") {
+        throw e;
+        // The error happens when the password is reset in the Cognito console
+        // In this case you need to call forgotPassword to reset the password
+        // Please check the Forgot Password part.
+      } else if (e.code === "NotAuthorizedException") {
+        throw e;
+
+        // The error happens when the incorrect password is provided
+      } else if (e.code === "UserNotFoundException") {
+        throw e;
+
+        // The error happens when the supplied username/email does not exist in the Cognito user pool
+      } else {
+        throw e;
+      }
+    }
+  };
 
   const isValidated = () => {
     return username.length > 0 && password.length > 0;
@@ -17,6 +48,7 @@ function Login({ history }) {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
+      await SignIn();
       alert("Success");
       history.push("/");
     } catch (e) {
