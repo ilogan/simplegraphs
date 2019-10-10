@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import EpisodeForm from "../components/EpisodeForm";
-import Graph from "../components/Graph";
+import EpisodeForm from "../../components/EpisodeForm";
+import Graph from "../../components/Graph";
 
-import podcastService from "../services/podcast";
-import { customizeEpisodes } from "../services/customizeEpisodes";
+import podcastService from "../../services/podcast";
+import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 function Dashboard() {
   const [inputValue, setInputValue] = useState(
