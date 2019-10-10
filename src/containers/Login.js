@@ -5,10 +5,11 @@ function Login({ history, cProps }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const SignIn = async () => {
+  const signIn = async () => {
     try {
       // sign in and set the user
       const user = await Auth.signIn(username, password);
+      console.log("euo");
       cProps.onStateChange("signedIn", user);
     } catch (e) {
       if (e.code === "UserNotConfirmedException") {
@@ -48,11 +49,12 @@ function Login({ history, cProps }) {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await SignIn();
+      await signIn();
       alert("Success");
       history.push("/");
     } catch (e) {
-      alert("Login error:", e.message);
+      console.error("Login error");
+      alert(e.message);
     }
   };
 
