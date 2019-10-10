@@ -6,7 +6,6 @@ import SimplecastAPI from "../../api/SimplecastAPI";
 import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 import EpisodeForm from "../../components/EpisodeForm/EpisodeForm";
-import Graph from "../../components/Graph";
 
 function Dashboard() {
   const [inputValue, setInputValue] = useState(
@@ -96,14 +95,6 @@ function Dashboard() {
             setEpisodeDownloadList={setEpisodeDownloadList}
             api={api}
           />
-        ) : null}
-        {episodeDownloadList.length > 0 ? (
-          <div className=" min-w-full">
-            <Graph
-              episodeDownloadList={episodeDownloadList}
-              episodeList={episodeList}
-            />
-          </div>
         ) : null}
       </div>
     </div>

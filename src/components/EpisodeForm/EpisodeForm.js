@@ -34,7 +34,7 @@ function EpisodeForm({
         className="mt-4 btn btn-blue text-sm font-bold"
         onClick={handleClick}
       >
-        Generate Graph
+        collect download data
       </button>
     </div>
   );
