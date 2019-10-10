@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import EpisodeForm from "../../components/EpisodeForm";
+import EpisodeForm from "../../components/EpisodeForm/EpisodeForm";
 import Graph from "../../components/Graph";
 
 import podcastService from "../../services/podcast";

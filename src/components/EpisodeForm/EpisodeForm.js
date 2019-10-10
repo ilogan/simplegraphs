@@ -1,5 +1,5 @@
 import React from "react";
-import podcastService from "../services/podcast";
+import podcastService from "../../services/podcast";
 
 import EpisodeTable from "./EpisodeTable";
 
