@@ -1,16 +1,20 @@
 import React from "react";
-import podcastService from "../../services/podcast";
 
 import EpisodeTable from "./EpisodeTable";
 
-function EpisodeForm({ episodeList, updateEpisode, setEpisodeDownloadList }) {
+function EpisodeForm({
+  episodeList,
+  updateEpisode,
+  setEpisodeDownloadList,
+  api
+}) {
   // store list of download info from api as state
   const handleClick = async () => {
     const downloadList = await Promise.all(
       episodeList
         .map(ep => {
           if (ep.showOnGraph) {
-            return podcastService.getEpisodeDownloads(ep.id);
+            return api.getEpisodeDownloads(ep.id);
           }
           return null;
         })

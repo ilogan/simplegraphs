@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Auth } from "aws-amplify";
+
+// class for creating axios instance with access to simplecast api
+import SimplecastAPI from "../../api/SimplecastAPI";
+import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 import EpisodeForm from "../../components/EpisodeForm/EpisodeForm";
 import Graph from "../../components/Graph";
-
-import podcastService from "../../services/podcast";
-import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 function Dashboard() {
   const [inputValue, setInputValue] = useState(
@@ -15,29 +17,37 @@ function Dashboard() {
   const [episodeList, setEpisodeList] = useState([]);
   // download info taken from api
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
+  // axios access to api
+  const [api, setApi] = useState("");
 
-  // useEffect(() => {
-  //   if (localStorage.podcastId && localStorage.episodeList) {
-  //     setPodcastId(localStorage.podcastId);
-  //     setEpisodeList(JSON.parse(localStorage.episodeList));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const createApiWithBearer = async () => {
+      try {
+        const session = await Auth.currentSession();
+        const token = session.idToken.jwtToken;
+        const simplecast = new SimplecastAPI(token);
+        setApi(simplecast);
+      } catch (e) {
+        console.error("Can't create api");
+        console.log(e.message);
+      }
+    };
+    createApiWithBearer();
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const podcasts = await podcastService.getPodcast();
+      const podcasts = await api.getPodcast();
       const podcast = podcasts.collection.find(p => p.title === inputValue);
       if (!podcast) {
         return console.log("couldn't find podcast");
       }
       setPodcastId(podcast.id);
-      //localStorage.setItem("podcastId", podcast.id);
 
-      const episodes = await podcastService.getPodcastEpisodes(podcast.id);
+      const episodes = await api.getPodcastEpisodes(podcast.id);
       const customizedEpisodes = customizeEpisodes(episodes.collection);
       setEpisodeList(customizedEpisodes);
-      //localStorage.setItem("episodeList", JSON.stringify(customizedEpisodes));
     } catch (e) {
       console.log("an error occurred", e.message);
     }
@@ -70,6 +80,7 @@ function Dashboard() {
           episodeList={episodeList}
           updateEpisode={updateEpisode}
           setEpisodeDownloadList={setEpisodeDownloadList}
+          api={api}
         />
       ) : null}
       {episodeDownloadList.length > 0 ? (
