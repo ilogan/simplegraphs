@@ -6,6 +6,7 @@ import SimplecastAPI from "../../api/SimplecastAPI";
 import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 import EpisodeForm from "../../components/EpisodeForm/EpisodeForm";
+import WebData from "../../components/WebData/WebData";
 
 function Dashboard() {
   const [inputValue, setInputValue] = useState(
@@ -96,6 +97,7 @@ function Dashboard() {
             api={api}
           />
         ) : null}
+        <WebData />
       </div>
     </div>
   );
