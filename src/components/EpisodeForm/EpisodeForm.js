@@ -2,24 +2,28 @@ import React from "react";
 
 import EpisodeTable from "./EpisodeTable";
 
+// a form for users to toggle which episodes they want to request download data for
 function EpisodeForm({
   episodeList,
   updateEpisode,
   setEpisodeDownloadList,
   api
 }) {
-  // store list of download info from api as state
+  // generates list of episode download data
   const handleClick = async () => {
     const downloadList = await Promise.all(
       episodeList
         .map(ep => {
+          // make request to /analytics/donwloads?episode={episodeId}
+          // only if episode is to be shown on graph
           if (ep.showOnGraph) {
             return api.getEpisodeDownloads(ep.id);
           }
           return null;
         })
-        .filter(ep => ep)
+        .filter(ep => ep) // filters out falsy values (null in this case)
     );
+    console.log(downloadList);
     setEpisodeDownloadList(downloadList);
   };
 
