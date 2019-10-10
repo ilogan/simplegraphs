@@ -13,13 +13,15 @@ function Dashboard() {
     "Really Awesome Really Real Show"
   );
   const [podcastId, setPodcastId] = useState("");
-  // episode info taken from api
+  // episode info taken from api endpoint: /podcasts/{podcastId}/episodes
   const [episodeList, setEpisodeList] = useState([]);
-  // download info taken from api
+  // episode download info taken from api endpoint: /analytics/downloads?episode={episodeId}
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
   // axios access to api
   const [api, setApi] = useState("");
 
+  // creates an axios instance to interact with simplecast api
+  // using an authenticated user's provisioned token
   useEffect(() => {
     const createApiWithBearer = async () => {
       try {
@@ -35,17 +37,22 @@ function Dashboard() {
     createApiWithBearer();
   }, []);
 
+  // generates a list of episodes associated with a podcast
   const handleSubmit = async e => {
     e.preventDefault();
     try {
+      // make request to /podcasts to receive list of user podcasts
       const podcasts = await api.getPodcast();
+      // if user entered title matches a title from endpoint, retrieve its id
       const podcast = podcasts.collection.find(p => p.title === inputValue);
       if (!podcast) {
         return console.log("couldn't find podcast");
       }
       setPodcastId(podcast.id);
 
+      // make request to /podcast/{episodeId}/episodes to retrieve list of episodes
       const episodes = await api.getPodcastEpisodes(podcast.id);
+      // append a new property for toggling whether or not an episode should be shown on graph then set the list
       const customizedEpisodes = customizeEpisodes(episodes.collection);
       setEpisodeList(customizedEpisodes);
     } catch (e) {
@@ -53,6 +60,7 @@ function Dashboard() {
     }
   };
 
+  // lookup podcast by id and update a value at some key
   const updateEpisode = (id, key, updatedValue) => {
     const updatedEpisodeList = episodeList.map(ep => {
       if (ep.id === id) {
