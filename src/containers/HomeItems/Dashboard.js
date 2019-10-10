@@ -65,30 +65,39 @@ function Dashboard() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
-          placeholder="Enter Podcast"
-        />
-        <button>Submit</button>
-      </form>
-      {podcastId ? (
-        <EpisodeForm
-          episodeList={episodeList}
-          updateEpisode={updateEpisode}
-          setEpisodeDownloadList={setEpisodeDownloadList}
-          api={api}
-        />
-      ) : null}
-      {episodeDownloadList.length > 0 ? (
-        <Graph
-          episodeDownloadList={episodeDownloadList}
-          episodeList={episodeList}
-        />
-      ) : null}
+    <div className="mx-auto max-w-3xl my-20">
+      <div className="flex flex-col items-center">
+        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+          <div className="flex items-center border-b border-b-2 border-blue-500 py-2">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              placeholder="Enter Podcast Name"
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            />
+            <button className="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">
+              Submit
+            </button>
+          </div>
+        </form>
+        {podcastId ? (
+          <EpisodeForm
+            episodeList={episodeList}
+            updateEpisode={updateEpisode}
+            setEpisodeDownloadList={setEpisodeDownloadList}
+            api={api}
+          />
+        ) : null}
+        {episodeDownloadList.length > 0 ? (
+          <div className=" min-w-full">
+            <Graph
+              episodeDownloadList={episodeDownloadList}
+              episodeList={episodeList}
+            />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

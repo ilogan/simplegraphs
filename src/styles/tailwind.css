@@ -1,4 +1,9 @@
 @tailwind base;
+th,
+td {
+  @apply px-2 py-1;
+}
+
 @tailwind components;
 .btn {
   @apply py-2 px-4 rounded;
@@ -10,5 +15,21 @@
 
 .btn-blue:hover {
   @apply bg-blue-700;
+}
+
+.btn-red {
+  @apply bg-red-500 text-white;
+}
+
+.btn-red:hover {
+  @apply bg-red-700;
+}
+
+.btn-green {
+  @apply bg-green-500 text-white;
+}
+
+.btn-green:hover {
+  @apply bg-green-700;
 }
 @tailwind utilities;

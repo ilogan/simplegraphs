@@ -24,14 +24,19 @@ function EpisodeTable({ episodeList, updateEpisode }) {
   };
 
   return (
-    <table>
+    <table className="mt-8 text-sm">
       <thead>
         <tr>
           <th>Title</th>
           <th>Episode #</th>
           <th>Publish date</th>
           <th>
-            <button onClick={toggleGraphShowAll}>Toggle All</button>
+            <button
+              className="btn btn-blue font-bold px-2 py-1 text-sm"
+              onClick={toggleGraphShowAll}
+            >
+              Toggle All
+            </button>
           </th>
         </tr>
       </thead>

@@ -26,7 +26,12 @@ function EpisodeForm({
   return (
     <div>
       <EpisodeTable episodeList={episodeList} updateEpisode={updateEpisode} />
-      <button onClick={handleClick}>Generate Graph</button>
+      <button
+        className="mt-4 btn btn-blue text-sm font-bold"
+        onClick={handleClick}
+      >
+        Generate Graph
+      </button>
     </div>
   );
 }

@@ -8,15 +8,31 @@ function EpisodeRow({ episode, id, updateEpisode, renderShowAllText }) {
   const publishDate = new Date(episode.published_at);
   return (
     <tr>
-      <td>{episode.title}</td>
+      <td className="">{episode.title}</td>
       <td>{episode.number}</td>
       <td>{publishDate.toDateString()}</td>
-      <td>
-        <button onClick={toggleGraphShow}>
-          {episode.showOnGraph ? "Remove" : "Add"}
-        </button>
+      <td className="text-center">
+        {episode.showOnGraph ? (
+          <button
+            className="btn btn-red px-1 py-1 text-sm"
+            onClick={toggleGraphShow}
+          >
+            Remove
+          </button>
+        ) : (
+          <button
+            className="btn btn-green px-1 py-1 text-sm"
+            onClick={toggleGraphShow}
+          >
+            Add
+          </button>
+        )}
       </td>
-      <td>{episode.showOnGraph ? "O" : "X"}</td>
+      {episode.showOnGraph ? (
+        <td className="pl-4 text-green-600">O</td>
+      ) : (
+        <td className="pl-4 text-red-500">X</td>
+      )}
     </tr>
   );
 }
