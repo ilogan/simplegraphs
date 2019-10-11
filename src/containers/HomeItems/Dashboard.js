@@ -56,6 +56,11 @@ function Dashboard() {
         return alert("Sorry, podcast not found!");
       }
 
+      // remove old report from screen if possible
+      if (report) {
+        setReport("");
+      }
+
       setPodcastId(podcast.id);
 
       // make request to /podcast/{episodeId}/episodes to retrieve list of episodes
