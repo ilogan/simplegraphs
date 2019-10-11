@@ -1,6 +1,6 @@
 import React from "react";
 
-import importDownloadsData from "../../services/webdatarocks";
+import wdrService from "../../services/webdatarocks";
 
 import EpisodeTable from "./EpisodeTable";
 
@@ -10,7 +10,7 @@ function EpisodeForm({
   updateEpisode,
   setEpisodeDownloadList,
   api,
-  setWdrData
+  setReport
 }) {
   // generates list of episode download data
   const handleClick = async () => {
@@ -27,8 +27,11 @@ function EpisodeForm({
         .filter(ep => ep) // filters out falsy values (null in this case)
     );
     // creates list of data points for WebDataRocksTable component
-    const wdrData = importDownloadsData(downloadList, episodeList);
-    setWdrData(wdrData);
+    const wdrData = wdrService.importDownloadsData(downloadList, episodeList);
+    //setWdrData(wdrData);
+    const wdrSlice = wdrService.thirtyDayDownloadsSlice;
+    const report = wdrService.generateReport(wdrData, wdrSlice);
+    setReport(report);
 
     setEpisodeDownloadList(downloadList);
   };

@@ -19,8 +19,8 @@ function Dashboard() {
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
   // axios access to api
   const [api, setApi] = useState("");
-  // list of downloads data to insert into WebDataRocksTable
-  const [wdrDownloadsData, setWdrDownloadsData] = useState([]);
+  // report to insert into WebDataRocksTable
+  const [report, setReport] = useState("");
 
   // creates an axios instance to interact with simplecast api
   // using an authenticated user's provisioned token
@@ -97,12 +97,10 @@ function Dashboard() {
             updateEpisode={updateEpisode}
             setEpisodeDownloadList={setEpisodeDownloadList}
             api={api}
-            setWdrData={setWdrDownloadsData}
+            setReport={setReport}
           />
         ) : null}
-        {wdrDownloadsData.length > 0 ? (
-          <WebDataRocksTable data={wdrDownloadsData} />
-        ) : null}
+        {report ? <WebDataRocksTable report={report} /> : null}
       </div>
     </div>
   );

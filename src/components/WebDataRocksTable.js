@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
 import WebDataRocks from "webdatarocks";
 
-function WebDataRocksTable({ data }) {
+function WebDataRocksTable({ report }) {
   useEffect(() => {
     // create a table and populate it with json data
     new WebDataRocks({
       container: "#pivot-table-container",
       toolbar: true,
-      report: {
-        dataSource: {
-          data // the list of data points
-        }
-      }
+      report
     });
-  }, [data]);
+  }, [report]);
 
   // must have id "pivot-table-comtainer to sync with WebDataRocks
   return (
