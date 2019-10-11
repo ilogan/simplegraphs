@@ -99,11 +99,13 @@ function Dashboard() {
           />
         );
       }
+      // podcast exists but has no episodes
       return (
         <div className="text-xs text-red-400">
           could not find any existing episodes for this podcast
         </div>
       );
+      // podcast doesn't exist
     } else {
       return null;
     }
