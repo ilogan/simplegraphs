@@ -1,5 +1,7 @@
 import React from "react";
 
+import importDownloadsData from "../../services/webdatarocks";
+
 import EpisodeTable from "./EpisodeTable";
 
 // a form for users to toggle which episodes they want to request download data for
@@ -7,7 +9,8 @@ function EpisodeForm({
   episodeList,
   updateEpisode,
   setEpisodeDownloadList,
-  api
+  api,
+  setWdrData
 }) {
   // generates list of episode download data
   const handleClick = async () => {
@@ -23,7 +26,10 @@ function EpisodeForm({
         })
         .filter(ep => ep) // filters out falsy values (null in this case)
     );
-    console.log(downloadList);
+    // creates list of data points for WebDataRocksTable component
+    const wdrData = importDownloadsData(downloadList, episodeList);
+    setWdrData(wdrData);
+
     setEpisodeDownloadList(downloadList);
   };
 

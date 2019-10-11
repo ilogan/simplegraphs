@@ -6,7 +6,7 @@ import SimplecastAPI from "../../api/SimplecastAPI";
 import { customizeEpisodes } from "../../services/customizeEpisodes";
 
 import EpisodeForm from "../../components/EpisodeForm/EpisodeForm";
-import WebData from "../../components/WebData/WebData";
+import WebDataRocksTable from "../../components/WebDataRocksTable";
 
 function Dashboard() {
   const [inputValue, setInputValue] = useState(
@@ -19,6 +19,8 @@ function Dashboard() {
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
   // axios access to api
   const [api, setApi] = useState("");
+  // list of downloads data to insert into WebDataRocksTable
+  const [wdrDownloadsData, setWdrDownloadsData] = useState([]);
 
   // creates an axios instance to interact with simplecast api
   // using an authenticated user's provisioned token
@@ -95,9 +97,12 @@ function Dashboard() {
             updateEpisode={updateEpisode}
             setEpisodeDownloadList={setEpisodeDownloadList}
             api={api}
+            setWdrData={setWdrDownloadsData}
           />
         ) : null}
-        <WebData />
+        {wdrDownloadsData.length > 0 ? (
+          <WebDataRocksTable data={wdrDownloadsData} />
+        ) : null}
       </div>
     </div>
   );
