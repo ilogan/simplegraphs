@@ -16,6 +16,7 @@ function Dashboard() {
   // episode info taken from api endpoint: /podcasts/{podcastId}/episodes
   const [episodeList, setEpisodeList] = useState([]);
   // episode download info taken from api endpoint: /analytics/downloads?episode={episodeId}
+  // eslint-disable-next-line
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
   // axios access to api
   const [api, setApi] = useState("");
