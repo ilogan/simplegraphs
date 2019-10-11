@@ -13,13 +13,17 @@ function Dashboard() {
     "Really Awesome Really Real Show"
   );
   const [podcastId, setPodcastId] = useState("");
+
   // episode info taken from api endpoint: /podcasts/{podcastId}/episodes
   const [episodeList, setEpisodeList] = useState([]);
+
   // episode download info taken from api endpoint: /analytics/downloads?episode={episodeId}
   // eslint-disable-next-line
   const [episodeDownloadList, setEpisodeDownloadList] = useState([]);
+
   // axios access to api
   const [api, setApi] = useState("");
+
   // report to insert into WebDataRocksTable
   const [report, setReport] = useState("");
 
@@ -49,8 +53,9 @@ function Dashboard() {
       // if user entered title matches a title from endpoint, retrieve its id
       const podcast = podcasts.collection.find(p => p.title === inputValue);
       if (!podcast) {
-        return console.log("couldn't find podcast");
+        return alert("Sorry, podcast not found!");
       }
+
       setPodcastId(podcast.id);
 
       // make request to /podcast/{episodeId}/episodes to retrieve list of episodes
@@ -75,6 +80,30 @@ function Dashboard() {
     setEpisodeList(updatedEpisodeList);
   };
 
+  const renderAfterSubmit = () => {
+    if (podcastId) {
+      // podcast exists and has episodes
+      if (episodeList.length > 0) {
+        return (
+          <EpisodeForm
+            episodeList={episodeList}
+            updateEpisode={updateEpisode}
+            setEpisodeDownloadList={setEpisodeDownloadList}
+            api={api}
+            setReport={setReport}
+          />
+        );
+      }
+      return (
+        <div className="text-xs text-red-400">
+          could not find any existing episodes for this podcast
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="mx-auto max-w-3xl my-20">
       <div className="flex flex-col items-center">
@@ -92,15 +121,7 @@ function Dashboard() {
             </button>
           </div>
         </form>
-        {podcastId ? (
-          <EpisodeForm
-            episodeList={episodeList}
-            updateEpisode={updateEpisode}
-            setEpisodeDownloadList={setEpisodeDownloadList}
-            api={api}
-            setReport={setReport}
-          />
-        ) : null}
+        {renderAfterSubmit()}
         {report ? <WebDataRocksTable report={report} /> : null}
       </div>
     </div>
