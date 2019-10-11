@@ -9,7 +9,6 @@ function Login({ history, cProps }) {
     try {
       // sign in and set the user
       const user = await Auth.signIn(username, password);
-      console.log("euo");
       cProps.onStateChange("signedIn", user);
     } catch (e) {
       if (e.code === "UserNotConfirmedException") {
