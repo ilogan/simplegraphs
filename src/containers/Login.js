@@ -49,7 +49,6 @@ function Login({ history, cProps }) {
     e.preventDefault();
     try {
       await signIn();
-      alert("Success");
       history.push("/");
     } catch (e) {
       console.error("Login error");
