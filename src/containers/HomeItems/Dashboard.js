@@ -115,7 +115,7 @@ function Dashboard() {
     <div className="mx-auto px-8 max-w-3xl my-20">
       <div className="flex flex-col items-center">
         <div className="text-sm bg-gray-200 rounded p-4">
-          <h3>Congratulations, you've signed in!</h3>
+          <h3 className="font-bold">Congratulations, you've signed in!</h3>
           <p className="mt-4">
             Since Simplegraphs is currently a work in progress, I created this
             account to demonstrate some of the data Simplecast podcast users
