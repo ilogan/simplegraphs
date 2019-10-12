@@ -24,7 +24,6 @@ yarn-error.log*
 
 .env
 
-aws-exports.js
 
 # use minified version instead
 
