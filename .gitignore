@@ -27,5 +27,5 @@ yarn-error.log*
 aws-exports.js
 
 # use minified version instead
-/src/styles/index.css
+
 
