@@ -15,9 +15,10 @@ function Landing() {
             shows. Unfortunately, Simplecast limits the amount of data users can
             see on their dashboard, despite users having access to the{" "}
             <a
-              href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
-              target="_blank"
               className="link"
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
             >
               Simplecast 2.0
             </a>{" "}

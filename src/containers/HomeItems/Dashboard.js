@@ -123,6 +123,7 @@ function Dashboard() {
             <a
               className="link"
               target="_blank"
+              rel="noopener noreferrer"
               href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
             >
               Simplecast 2.0
