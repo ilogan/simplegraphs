@@ -112,8 +112,8 @@ function Dashboard() {
   };
 
   return (
-    <div className="mx-auto px-8 max-w-3xl my-20">
-      <div className="flex flex-col items-center">
+    <div className="top-container">
+      <div className="center-col-container">
         <div className="text-sm bg-gray-200 rounded p-4">
           <h3 className="font-bold">Congratulations, you've signed in!</h3>
           <p className="mt-4">

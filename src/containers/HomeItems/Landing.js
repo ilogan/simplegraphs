@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 function Landing() {
   return (
-    <header className="mx-auto px-8 max-w-3xl my-20">
-      <div className="flex flex-col items-center">
+    <header className="top-container">
+      <div className="center-col-container">
         <h1 className="text-4xl font-bold">Simplegraphs</h1>
         <div className="mt-8">
           <h3 className="font-semibold">Some Background</h3>

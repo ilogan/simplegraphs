@@ -58,7 +58,7 @@ function Login({ history, cProps }) {
 
   return (
     <div className="top-container">
-      <div className="center-container">
+      <div className="center-col-container">
         <form className="w-full max-w-xs md:max-w-sm" onSubmit={handleSubmit}>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
