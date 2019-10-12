@@ -111,9 +111,9 @@ function Login({ history, cProps }) {
         <div className="mt-10 text-sm">
           <div className="md:flex md:items-center">
             <p className="">
-              Simplecast requires credentials to access their API. Only an admin
-              can sign up users for the time being, so I created a demo account
-              for demonstraion purposes.
+              Simplecast requires an api token to access their API. This account
+              has credentials to access that API. Note that user signups will
+              become available upon further testing and feature addition!
             </p>
           </div>
 
