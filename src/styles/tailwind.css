@@ -23,6 +23,14 @@ td {
 
 @tailwind components;
 
+.top-container {
+  @apply mx-auto px-8 max-w-3xl my-20;
+}
+
+.center-container {
+  @apply flex flex-col items-center;
+}
+
 .link {
   @apply underline;
 }
