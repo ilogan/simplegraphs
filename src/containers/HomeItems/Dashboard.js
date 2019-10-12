@@ -126,7 +126,7 @@ function Dashboard() {
               rel="noopener noreferrer"
               href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
             >
-              Simplecast 2.0
+              Simplecast 2.0 API
             </a>{" "}
             page. As such, this user has access to a couple of Simplecast
             provided mock podcasts:

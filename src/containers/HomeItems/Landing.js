@@ -20,9 +20,9 @@ function Landing() {
               target="_blank"
               href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
             >
-              Simplecast 2.0
-            </a>{" "}
-            API.
+              Simplecast 2.0 API
+            </a>
+            .
           </p>
           <h3 className="mt-8 font-semibold">The Fix</h3>
           <p className="text-sm md:text-base">
