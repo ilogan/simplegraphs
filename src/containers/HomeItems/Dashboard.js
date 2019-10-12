@@ -112,9 +112,9 @@ function Dashboard() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl my-20">
+    <div className="mx-auto px-8 max-w-3xl my-20">
       <div className="flex flex-col items-center">
-        <div className="text-sm">
+        <div className="text-sm bg-gray-200 rounded p-4">
           <h3>Congratulations, you've signed in!</h3>
           <p className="mt-4">
             Since Simplegraphs is currently a work in progress, I created this
@@ -146,7 +146,7 @@ function Dashboard() {
               value={inputValue}
               onChange={e => setInputValue(e.target.value)}
               placeholder="Enter Podcast Name"
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none text-sm md:text-base"
             />
             <button className="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">
               Submit

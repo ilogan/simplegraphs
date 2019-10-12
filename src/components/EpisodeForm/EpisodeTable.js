@@ -24,7 +24,7 @@ function EpisodeTable({ episodeList, updateEpisode }) {
   };
 
   return (
-    <table className="mt-8 text-sm">
+    <table className="mt-8 text-xs md:text-sm">
       <thead>
         <tr>
           <th>Title</th>
@@ -32,7 +32,7 @@ function EpisodeTable({ episodeList, updateEpisode }) {
           <th>Publish date</th>
           <th>
             <button
-              className="btn btn-blue font-bold px-2 py-1 text-sm"
+              className="btn btn-blue font-bold px-2 py-1 text-xs md:text-sm"
               onClick={toggleGraphShowAll}
             >
               Toggle All

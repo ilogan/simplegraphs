@@ -13,7 +13,7 @@ function WebDataRocksTable({ report }) {
 
   // must have id "pivot-table-comtainer to sync with WebDataRocks
   return (
-    <div className="mt-8 w-full">
+    <div className="mt-20 w-full">
       <div id="pivot-table-container"></div>
     </div>
   );

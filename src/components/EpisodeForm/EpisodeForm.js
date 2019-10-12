@@ -37,7 +37,7 @@ function EpisodeForm({
   };
 
   return (
-    <div>
+    <div className="min-w-full flex flex-col">
       <EpisodeTable episodeList={episodeList} updateEpisode={updateEpisode} />
       <button
         className="mt-4 btn btn-blue text-sm font-bold"
