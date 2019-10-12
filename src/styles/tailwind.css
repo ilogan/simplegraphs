@@ -1,10 +1,28 @@
 @tailwind base;
+
+h3 {
+  @apply font-bold text-xl;
+}
+
+ul {
+  @apply list-disc list-inside;
+}
+
 th,
 td {
   @apply px-2 py-1;
 }
 
 @tailwind components;
+
+.link {
+  @apply underline;
+}
+
+.link:hover {
+  @apply bg-orange-300;
+}
+
 .btn {
   @apply py-2 px-4 rounded;
 }

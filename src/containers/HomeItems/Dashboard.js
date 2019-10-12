@@ -114,7 +114,32 @@ function Dashboard() {
   return (
     <div className="mx-auto max-w-3xl my-20">
       <div className="flex flex-col items-center">
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <div className="text-sm">
+          <h3>Congratulations, you've signed in!</h3>
+          <p className="mt-4">
+            Since Simplegraphs is currently a work in progress, I created this
+            account to demonstrate some of the data Simplecast podcast users
+            have access to. This account has the authorization found on the{" "}
+            <a
+              className="link"
+              target="_blank"
+              href="https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api"
+            >
+              Simplecast 2.0
+            </a>{" "}
+            page. As such, this user has access to a couple of Simplecast
+            provided mock podcasts:
+          </p>
+          <ul className="mt-4">
+            <li>Really Awesome Really Real Show</li>
+            <li>Another Really Real Show About Exciting, Real Things</li>
+          </ul>
+          <p className="mt-4">
+            Yes, those are their names. Try submitting one!
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-24 w-full max-w-sm">
           <div className="flex items-center border-b border-b-2 border-blue-500 py-2">
             <input
               type="text"
