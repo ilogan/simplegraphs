@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Simplegraphs - Data Parser and Visualizer
 
-## Available Scripts
+[Simplegraphs](https://epic-davinci-f3f77f.netlify.com/) is a companion app being developed for podcasters who use [simplecast.com](https://simplecast.com/) to host their podcasts. Simplecast is a great tool for users to gather data on how well their podcasts are performing. Episode downloads, unique listeners, and general listener location are just a few of the more important metrics Simplecast keeps track of in their [API](https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api). 
 
-In the project directory, you can run:
+This is great for developers who can parse the JSON data out of the supplied endpoints, but not so great for your average up-and-coming podcaster. The data provided on user dashboards is limited unless the user upgrades their hosting plan. For example, a basic-tier Simplecast user can see the last 7 days of downloads for their 5 most recent episodes. While helpful, it would be much more insightful if podcasters could compare any number of episodes for as many days as they wish. 
 
-### `npm start`
+This is where Simplegraphs comes in. It seeks to pull data down from the provided Simplecast API and allow users to customize their data however they see fit.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How does it work?
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### The Backend
+Currently, the backend is completely hosted by Amazon's cloud computing platform, [AWS](https://aws.amazon.com/). 
 
-### `npm test`
+A proxy server forwards user requests to the Simplecast API, receives its response, then forwards the response back to the Simplegraphs user. 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The proxy serves a few important purposes:
 
-### `npm run build`
+1) User Authentication:
+Only registered Simplegraph users can access the proxy. This is performed through Amazon's Cognito user pools. Essentially, if a user is not in an authorized pool, then they cannot use the service.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2) Provides Access Token:
+Simplecast users need to provide a secret access token to retrieve data from the Simplecast API. If the token is not in the authorization header, users are denied access. The key needs to be secret, so it is stored server side and never seen by the frontend client. The proxy acts as a middleman to append the token during requests.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+3) Limited Requests:
+The proxy is intentionally limited in the types of requests it can make. It only reads data using GET requests. There are no existing endpoints in the proxy that allow a user to make POST, PUT, or DELETE requests.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4) Security:
+The above three functions all come together to keep user information secure. Authentication is the first wall to block an unwanted intruder. Even if an attacker somehow managed to steal credentials to a Simplegraph user's account, they would have read-only access to the information. They would never see the api token, and they could not make any malicius write requests.
 
-### `npm run eject`
+For now, only an admin (that's me) can add users to Simplegraphs. This is to ensure the backend is working fully as intended, with zero vulnerabilities.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### The Frontend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The frontend is primarily written in javascript using [React](https://reactjs.org/). Because of this, Simplegraphs is a single page application (SPA) in which all components are dynamically rendered. Route handling is provided with the help of [react-router](https://reacttraining.com/react-router/) to make page navigation seamless for users. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+There are two primary flows for users:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1) Unauthenticated:
+Unauthenticated users are shown a landing page as their home. They have access to an additional login screen, but that's it. They must login to the app in order to attain the AWS credentials that allow them to use the application's features. 
 
-## Learn More
+2) Authenticated:
+Authenticated users gain access to the backend proxy server. Upon logging into the app, rotating AWS credentials are provided to a user with the help of an Authenticator component. After 1 hour, the credentials expire and no longer work with the proxy server (this is so that if an attacker intercepts said credentials, they cannot continue to perform requests without following the proper authentication channel). 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Users who have access to the app can make two primary form submissions:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1) Podcast Submission: 
+The first form makes a single request to an endpoint  providing all the episodes attributed to a podcast. The JSON data is parsed and formatted into a table, so users can choose which episodes they want to display download data for. 
 
-### Code Splitting
+2) Episode Submission:
+The second form submission checks which episodes are marked for data retrieval. Requests are made to each respective episode download endpoint, and Simplegraphs transforms the individual JSON data files into a single object readable by a [WebDataRocks](https://www.webdatarocks.com/) pivot table. From here a user has access to the selected episode downloads data in an exportable format.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### todos
+Further features are coming after some thorough jesting! 
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- integrating charts with WebDataRocks table
+- multiple user signup
