@@ -1,6 +1,6 @@
 # Simplegraphs - Data Parser and Visualizer
 
-[Simplegraphs](https://epic-davinci-f3f77f.netlify.com/) is a companion app being developed for podcasters who use [simplecast.com](https://simplecast.com/) to host their podcasts. Simplecast is a great tool for users to gather data on how well their podcasts are performing. Episode downloads, unique listeners, and general listener location are just a few of the more important metrics Simplecast keeps track of in their [API](https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api). 
+[Simplegraphs](https://simplegraphs.netlify.app/) is a companion app being developed for podcasters who use [simplecast.com](https://simplecast.com/) to host their podcasts. Simplecast is a great tool for users to gather data on how well their podcasts are performing. Episode downloads, unique listeners, and general listener location are just a few of the more important metrics Simplecast keeps track of in their [API](https://help.simplecast.com/en/articles/2724796-simplecast-2-0-api). 
 
 This is great for developers who can parse the JSON data out of the supplied endpoints, but not so great for your average up-and-coming podcaster. The data provided on user dashboards is limited unless the user upgrades their hosting plan. For example, a basic-tier Simplecast user can see the last 7 days of downloads for their 5 most recent episodes. While helpful, it would be much more insightful if podcasters could compare any number of episodes for as many days as they wish. 
 
