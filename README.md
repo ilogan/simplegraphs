@@ -48,9 +48,3 @@ The first form makes a single request to an endpoint  providing all the episodes
 
 2) Episode Submission:
 The second form submission checks which episodes are marked for data retrieval. Requests are made to each respective episode download endpoint, and Simplegraphs transforms the individual JSON data files into a single object readable by a [WebDataRocks](https://www.webdatarocks.com/) pivot table. From here a user has access to the selected episode downloads data in an exportable format.
-
-### todos
-Further features are coming after some thorough jesting! 
-
-- integrating charts with WebDataRocks table
-- multiple user signup
